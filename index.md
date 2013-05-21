@@ -1,6 +1,5 @@
 ---
 layout: index
-title: Alan learns to web
 ---
 
 {% for post in site.posts %}
@@ -10,4 +9,3 @@ title: Alan learns to web
 
   [全文阅读 &raquo;]({{ post.url }})
 {% endfor %}
-

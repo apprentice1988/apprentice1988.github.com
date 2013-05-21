@@ -102,12 +102,12 @@ $(function() {
 
 	// ============== 目录提取 ===============
 	(function() {
-		// 设置无目录时，不显示
+		// 检查YAML front matter里list变量，设置，如果list==true
 		if (!parseInt('{{page.list}}', 10)) {
 			return;
 		}
 
-		var dom = $('<fieldset id="catalogue"><legend>目录</legend></fieldset>'),
+		var dom = $('<fieldset id="catalogue"><h3>目录</h3></fieldset>'),
 			count = 0;
 		
 		$('#post').find('h2,h3,h4,h5').each(function() {
@@ -121,6 +121,7 @@ $(function() {
 
 		dom.appendTo('body');
 	})();
+
 });
 </script>
 

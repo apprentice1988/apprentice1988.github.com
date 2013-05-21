@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>{{ page.title }}</title>
+		<title> {% if page.title %}{{page.title}} {% else %} Alan learns to Code {% endif %} </title>
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/pygments_native.css" />
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Handlee">
@@ -11,7 +11,7 @@
 		<header id="header">
 			<div class="header-info fix">
 				<h1><a href="/">Alan</a></h1>
-				<p class="describe">&lt; Learns to web ... /&gt;</p>
+				<p class="describe">&lt; Learns to code ... /&gt;</p>
 				<nav class="navigation">
 					<ul>
 						<li><a href="/">首页</a></li>
@@ -28,7 +28,15 @@
 		</section><!--/content end-->
 
 		<footer id="footer">
-			<a href="/about.html">About</a>
+			<div class="left">
+				Email: <a href="mailto:manxingxing@gmail.com">manxingxing@gmail.com</a>
+			</div>
+
+			<div class="right">
+				Theme from <a href="http://http//calefy.org/">@calefy</a>
+				|
+				Powered by <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://pages.github.com/">Github Pages</a>
+			</div>
 		</footer>
 	</body>
 </html>
