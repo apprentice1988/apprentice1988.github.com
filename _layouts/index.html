@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="article-list">
+	{{ content }}
+</div>
+
+<aside class="aside">
+	<div>
+		<h3>分类</h3>
+		<ul>
+			{% for category in site.categories %}
+			<li><a href="/category.html#{{category[0]}}">{{category[0]}} ({{category[1] | size}})</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+<!-- 	<div>
+		<h3>标签</h3>
+		<ul>
+			{% for tag in site.tags %}
+			<li><a href="/tag.html#{{tag[0]}}">{{tag[0]}} ({{tag[1] | size}})</a></li>
+			{% endfor %}
+		</ul>
+	</div> -->
+	<div>
+		<h3>链接</h3>
+	</div>
+</aside>
