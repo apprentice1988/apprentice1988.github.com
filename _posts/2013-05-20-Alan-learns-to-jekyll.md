@@ -143,7 +143,9 @@ __named cycle__
 
 ## 代码高亮
 使用pygments，ubuntu下需安装python-pygments软件包
+
     sudo apt-get install python-pygments
+
 在[这里](http://pygments.org/languages/)查看支持的语言列表
 
 格式为：
@@ -165,6 +167,13 @@ __named cycle__
 
 ## markdown
 [Markdown 语法说明 (简体中文版) ](http://wowubuntu.com/markdown/)
+
+## 应用例子
+
+### 在日志列表中显示缩略图
+在YAML front formatter中定义image变量，给赋值为一个图片的文件名
+在日志列表中以`<img src="{% raw %}{{ page.image }}{% endraw %}" />`的形式引用这个图片。
+
 
 ## 链接
 

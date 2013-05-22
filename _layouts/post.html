@@ -121,7 +121,18 @@ $(function() {
 
 		dom.appendTo('body');
 	})();
-
+	toggleCatalogue = function() {
+		if (!$("#catalogue").length) {return;}
+		var gap = $("#post").offset().left - $("#catalogue").offset().left - $("#catalogue").outerWidth()
+		if (gap<=0) {
+			$("#catalogue").hide();
+		}
+		else {
+			$("#catalogue").show();
+		}
+	}
+	toggleCatalogue();
+	$(window).resize(toggleCatalogue);
 });
 </script>
 
