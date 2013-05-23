@@ -28,17 +28,9 @@ title: 书单
     <a href="http://book.douban.com/subject/6756090/">松本行弘的程序世界</a>
   </li>
 </ul>
-<script src="js/jquery-min.js" ype="text/javascript" ></script>
+
+
 <script type="text/javascript" >
-  var wish = function(data) {
-    dbapi(data, $("#wish"));
-  };
-  var reading = function(data) {
-    dbapi(data, $("#reading"));
-  };
-  var read = function(data) {
-    dbapi(data, $("#read"));
-  };
   var dbapi = function(data, obj){
     $.each(data.entry, function(i, book){
       var title = book["db:subject"].title["$t"]
@@ -47,9 +39,32 @@ title: 书单
       var item = $("<li/>");
       $("<a/>").attr({"href":link}).text(title).appendTo(item);
       $(item).appendTo(obj)
-    })
+    });
   }
+  $(function(){
+    $.ajaxSetup({
+      type: "get",
+      url: "http://api.douban.com/people/28935831/collection",
+      async: false,
+      dataType: "jsonp",
+      jsonp: "callback",
+      data: {
+        apikey: "06be6ee392351481143b4caab69f3d83",
+        cat: "book",
+        alt: "xd"
+      }
+    });
+    $.ajax({
+      data: {status: "wish"},
+      success: function(data){dbapi(data, $("#wish")) }
+    });
+    $.ajax({
+      data: {status: "read"},
+      success: function(data){dbapi(data, $("#read")) }
+    });
+    $.ajax({
+      data: {status: "reading"},
+      success: function(data){dbapi(data, $("#reading")) }
+    });
+  })
 </script>
-<script src="http://api.douban.com/people/28935831/collection?cat=book&status=wish&alt=xd&callback=wish&apikey=06be6ee392351481143b4caab69f3d83" ype="text/javascript" ></script>
-<script src="http://api.douban.com/people/28935831/collection?cat=book&status=reading&alt=xd&callback=reading&apikey=06be6ee392351481143b4caab69f3d83" ype="text/javascript" ></script>
-<script src="http://api.douban.com/people/28935831/collection?cat=book&status=read&alt=xd&callback=read&apikey=06be6ee392351481143b4caab69f3d83" ype="text/javascript" ></script>
