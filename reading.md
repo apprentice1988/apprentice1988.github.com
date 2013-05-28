@@ -16,9 +16,7 @@ title: 书单
 ## 在读
 
 <ul id="reading">
-  <li>
-    <a href="https://github.com/hadley/devtools/wiki">Advanced R development: making reusable code (in process)</a>
-  </li>
+
 </ul>
 
 ## 已读
@@ -26,6 +24,9 @@ title: 书单
 <ul id="read">
   <li>
     <a href="http://book.douban.com/subject/6756090/">松本行弘的程序世界</a>
+  </li>
+  <li>
+    <a href="https://github.com/hadley/devtools/wiki">Advanced R development: making reusable code (in process)</a>
   </li>
 </ul>
 
