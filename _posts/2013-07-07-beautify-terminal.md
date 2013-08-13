@@ -7,7 +7,7 @@ category: tools
 
 原生的bash样子是这样的
 
-<img src="css/images/old-terminal.png">
+<img src="/css/images/old-terminal.png">
 
 在～/.bashrc 中复制粘贴如下代码：
 
@@ -26,13 +26,13 @@ PS1="$c2\W $c3(\$(~/.rvm/bin/rvm-prompt v g)) $c1\$(parse_git_branch) $c_1$ "
 
 重开terminal，看看是不是好看点了。
 
-<img src="css/images/new-terminal.png">
+<img src="/css/images/new-terminal.png">
 
 ### 2. 美化git log
 
 美化之前是这样的
 
-<img src="css/images/old-log.png">
+<img src="/css/images/old-log.png">
 
 在terminal中执行
 
@@ -48,6 +48,6 @@ git lg
 
 效果如下
 
-<img src="css/images/new-log.png">
+<img src="/css/images/new-log.png">
 
 每行表示一个commit,有graphic, 分支，名字，时间，用户。
