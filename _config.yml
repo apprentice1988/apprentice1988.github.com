@@ -3,5 +3,8 @@ pygments: true
 #markdown: rdiscount
 
 markdown: redcarpet
+Content-Type: text/cache-manifest
+Cache-Control: max-age=0
+Expires: [CURRENT TIME]
 #redcarpet:
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
