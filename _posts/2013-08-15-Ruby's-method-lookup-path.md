@@ -17,7 +17,7 @@ class Report
 
 	def formatted_output
 		"Current Balance: #{balance}\n\n" + 
-		“Credits:\n\n#{formatted_line_items(credits)}\n\n" + 
+		"Credits:\n\n#{formatted_line_items(credits)}\n\n" + 
 		"Debits:\n\n#{formatted_line_items(debits)}"
 	end
 
@@ -29,7 +29,7 @@ end
 
 下面的例子将展示我们如何使用这个类
 
-```
+```ruby
 ledger = [ ["Deposit Check #123", 500.15],
            ["Fancy Shoes",       -200.25],
            ["Fancy Hat",          -54.40],
@@ -58,7 +58,7 @@ Kitteh Litteh: 5.00
 
 尽管不是特别完好，但这个report是我们希望看到的主要内容。 你可能设想我们这些内容如何嵌到其他的report中，例如一个觉有header和footer的邮件。一个可行的办法是通过类继承，如下：
 
-```
+```ruby
 require "date"
 
 class EmailReport < Report
@@ -190,3 +190,43 @@ puts object.foo
 4. 事物类中引入的`module`顺序的相反顺序查找
 5. 父类中定义的方法
 
+## 什么时候使用普通类定义
+下面的代码运行了简单的计时器，可以给文件写出时间戳，计算过去的事件。
+
+```ruby
+class Timer
+  MissingTimestampError = Class.new(StandardError)
+
+  def initialize(dir=Turbine::Application.config_dir)
+    @file = "#{dir}/timestamp"
+  end
+
+  def write_timestamp
+    File.open(@file,"w") {|f| f << Time.now.utc.to_s}
+  end
+
+  def timestamp
+    raise MissingTimestampError unless running?
+    Time.parse(File.read(@file)).localtime
+  end
+
+  def elapsed_time
+    (Time.now.utc-timestamp.utc) / 60.0/60.0
+  end
+
+  def clear_timestamp
+    FileUtils.rm_f(@file)
+  end
+
+  def running?
+    File.exist?(@file)
+  end
+end
+```
+当考虑这是否是一个平淡无奇老旧的类定义的时候，我经常问我自己一些问题
+1. 当我以后有其他需要的时候是不是可以容易的基于现有代码去定制调整?
+2. 这些代码是不是能比较容易地被第三方代码扩展使用?
+3. 这里面有没有常用的方法我可以提取出来在其他地方使用?
+
+因为这个`Timer`类源自我自己的项目，所以我可以毫无疑问的回答上面的问题，这个代码不能满足上面的要求，这个类在以后的使用中不方便扩展。
+。。。待续
