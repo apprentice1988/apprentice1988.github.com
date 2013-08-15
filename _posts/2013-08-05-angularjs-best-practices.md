@@ -24,22 +24,30 @@ Angular建议你用一定的目录结构，既可以用[Augular-seed project](ht
 {{Interpolation}}
 
 为了解决这个问题，可以有几个方法。一个是使用”ng-cloak"-简单的创建一个style
+
 ```
 [ng-cloak] {display:none;}
 ```
+
 我们通常将它加在body tag中，意味着只有Angular被加载，页面才会显现出来。这也意味着页面渲染之前存在一点延迟。
 另一个可用的方法是’ng-bind', 用
+
 ```
 <p>Hello, <span ng-bind="user.name"/></p>
 ```
+
 取代
+
 ```
 <p>Hello, {{user.name}}</p>
 ```
+
 关于这个方法，比较简洁的方法是我们可以设置一个默认值在浏览器加载Angular之前去显现。
+
 ```
 <p>Hello, <span ng-bind="user.name">???<span /></p>
 ```
+
 记住这只在你在建一个单页app(SPA)时候，第一个页面（代表性的为index.html)，这些才是必须的。
 
 ## 分离事务逻辑和展示逻辑

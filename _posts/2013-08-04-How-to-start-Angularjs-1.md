@@ -52,6 +52,7 @@ AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架�
 
 ## 建立你的应用
 在这部分，我们讨论我们称作的`myApp`的应用。 你可以`git clone`我们的项目，也可以跟着介绍一步步做。 创建index.html文件，填入如下内容：
+
 ```
 <!doctype html>
 <html ng-app="myApp">
@@ -63,35 +64,44 @@ AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架�
 	</body>
 </html>
 ```
+
 然后创建叫做js的目录，在目录中创建main.js文件
+
 ```
 mkdir js
 touch js/main.js
 ```
+
 我们在HTML页面中加载了 AngularJS 和我们将要写的main.js。 我们接下来要做的多部分都在main.js中完成。
 
 ## angular.module
 定义一个 AngularJS 应用， 我们首先需要定义	`angular.module`。一个Angular module是方法函数的一个简单的集合。当app “booted”时需要运行这个module。
 下面，我们需要在`main.js`中定义这个module
-```js
+
+```
 var app = angular.module("myApp",[]);
 ```
+
 这一行创建了叫做“myApp”的module
 现在，我们要实例化我们的“myApp”的module，告诉Angular，我们app赖以存在的DOM树。 在一个页面中实例化module，我们将用到`ng-app`目录，他会告诉 Angular我们希望让module own DOM树的某一部分。
 
 我们可以通过简单的把我们的app名字做了index.html的参数去实例化我们自己的app（module）。
+
 ```
 <html ng-app="myApp"></html>
 ```
+
 当我们刷新页面时，  Angular将引导`myApp`
 
 我们可以在DOM任何元素上设置`ng-app`, 这些元素是 Angular启动的地方。
+
 ```
 <h2>I am not inside an AngularJS app</h2>
 <div ng-app="embeddedApp">
 	<h3>Inside an AngularJs app</h3>
 </div>
 ```
+
 对于整个页面都需要 AngularJS的app，我们可以把`ng-app`放在html元素上。
 
 一点我们定义了我们的应用，我们可以开始应用的其他部分了。我们将使用`$scope`，它是 AngularJS最重要的概念之一。 我们将在第2到第7部分深入解释它。
@@ -100,6 +110,7 @@ var app = angular.module("myApp",[]);
 [项目github](https://github.com/auser/ng-newsletter-beginner-series)
 。
 为了本地化我们的repo，保证你安装了git， clone我们的项目，切换到`part`分支
+
 ```
 git clone https://github.com/auser/ng-newsletter-beginner-series.git
 git checkout -b part1

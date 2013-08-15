@@ -10,6 +10,7 @@ JavaScript’s core—most often used and most fundamental—data type is the Ob
 An object is an unordered list of primitive data (and sometimes reference data types) types that are stored as name-value pairs. Each item in the list is called a property (functions are called methods) and each property name has to be unique and can be a string or a number.
 
 Here is a simple object:
+
 ```
 var myFirstObject = {firstName: "Richard", favoriteAuthor: "Conrad"};
 ```
@@ -182,6 +183,7 @@ aMango.mangoSpice = “some value”;
 ```
 
 — To access a property of an object, we use object.property, for example:
+
 ```
 console.log(aMango.mangoSpice); // “some value”
 ```
