@@ -32,19 +32,19 @@ Angular建议你用一定的目录结构，既可以用[Augular-seed project](ht
 我们通常将它加在body tag中，意味着只有Angular被加载，页面才会显现出来。这也意味着页面渲染之前存在一点延迟。
 另一个可用的方法是’ng-bind', 用
 
-```
+```html
 <p>Hello, <span ng-bind="user.name"/></p>
 ```
 
 取代
 
-```
+```html
 <p>Hello, {{user.name}}</p>
 ```
 
 关于这个方法，比较简洁的方法是我们可以设置一个默认值在浏览器加载Angular之前去显现。
 
-```
+```html
 <p>Hello, <span ng-bind="user.name">???<span /></p>
 ```
 

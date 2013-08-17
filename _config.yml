@@ -1,8 +1,8 @@
 permalink: /:year/:month/:day/:title.html
 pygments: true
 #markdown: rdiscount
-
 markdown: redcarpet
+extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables",     "with_toc_data"]
 Content-Type: text/cache-manifest
 Cache-Control: max-age=0
 Expires: [CURRENT TIME]

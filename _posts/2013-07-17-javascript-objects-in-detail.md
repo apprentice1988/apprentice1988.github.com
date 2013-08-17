@@ -11,7 +11,7 @@ An object is an unordered list of primitive data (and sometimes reference data t
 
 Here is a simple object:
 
-```
+```javascript
 var myFirstObject = {firstName: "Richard", favoriteAuthor: "Conrad"};
 ```
 
@@ -19,7 +19,7 @@ To reiterate: Think of an object as a list that contains items and each item (a 
 
 Property names can be a string or a number, but if the property name is a number, it has to be accessed with the bracket notation. More on bracket notation later. Here is another example of objects with numbers as the property name: 
 
-```
+```javascript
 var ageGroup = {30: "Children", 100:"Very Old"};
 console.log(ageGroup.30) // This will throw an error
 // This is how you will access the value of the property 30, to get value "Children"
@@ -34,7 +34,7 @@ As a JavaScript developer you will most often use the object data type, mostly f
 
 One of the main differences between reference data type and primitive data types is reference data type’s value is stored as a reference, it is not stored directly on the variable as a value like the primitive data types are. For example:
 
-```
+```javascript
 // The primitive data type String is stored as a value
 var person = "Kobe";  
 var anotherPerson = person; // anotherPerson = the value of person
@@ -48,7 +48,7 @@ It is worth noting that even though we changed person to “Bryant,” theanothe
 
 Compare the primitive data saved-as-value demonstrated above with the save-as-reference for objects:
 
-```
+```javascript
 var person = {name: "Kobe"};
 var anotherPerson = person;
 person.name = "Bryant";
@@ -75,7 +75,7 @@ These are the two common ways to create objects: 
 
 The most common and, indeed, the easiest way to create objects is with the object literal described here:
 
-```
+```javascript
 // This is an empty object initialized using the object literal notation 
 var myBooks = {}; 
 // This is an object with 4 items, again using object literal 
@@ -87,7 +87,7 @@ var mango = { color: "yellow", shape: "round", sweetness: 8, howSweetAmI: functi
 
  The second most common way to create objects is with Object constructor. A constructor is a function used for initializing new objects, and you use the new keyword to call the constructor.
 
-```
+```javascript
 var mango =  new Object ();
 mango.color = "yellow";
 mango.shape= "round";
@@ -108,7 +108,7 @@ For simple objects that may only ever be used once in your application to store 
 
 Imagine you have an application that displays fruits and detail about each fruit. All fruits in your application have these properties: color, shape, sweetness, cost, and a showName function. It would be quite tedious and counterproductive to type the following every time you want to create a new fruit object.
 
-```
+```javascript
 var mangoFruit = {
 color: "yellow",
 sweetness: 8,
@@ -134,7 +134,7 @@ Here are two common patterns for creating objects. If you have done the Learn Ja
 
 ### Constructor Pattern for Creating Objects
 
-```
+```javascript
 function Fruit (theColor, theSweetness, theFruitName, theNativeToLand) {
 
     this.color = theColor;
@@ -155,7 +155,7 @@ function Fruit (theColor, theSweetness, theFruitName, theNativeToLand) {
 
 With this pattern in place, it is very easy to create all sorts of fruits. Thus:
 
-```
+```javascript
 var mangoFruit = new Fruit ("Yellow", 8, "Mango", ["South America", "Central America", "West Africa"]); mangoFruit.showName(); // This is a Mango. 
 
 mangoFruit.nativeTo();
@@ -174,7 +174,7 @@ If you had to change the fruitName function, you only had to do it in one locati
 
 — An own property is defined directly on the object itself, for example:
 
-```
+```javascript
 // Let’s create an object first:
 var aMango = new Fruit ();
 // Now we define the mangoSpice property directly on the aMango object
@@ -184,14 +184,14 @@ aMango.mangoSpice = “some value”;
 
 — To access a property of an object, we use object.property, for example:
 
-```
+```javascript
 console.log(aMango.mangoSpice); // “some value”
 ```
 
 
  — To invoke a method of an object, we use object.method(), for example :
 
-```
+```javascript
 // First, lets add a method
 aMango.printStuff = function () {return “Printing”;}
 // Now we can invoke the printStuff method:
@@ -202,7 +202,7 @@ aMango.printStuff ();
 
 Before we discuss the Prototype Pattern, you should already understand JavaScript’s prototype. If you don’t, read my post JavaScript Prototype in Plain, Detailed Language
 
-```
+```javascript
 function Fruit () {
 }
 
@@ -222,7 +222,7 @@ Fruit.prototype.nativeTo = function () {
 
 And this is how we call the Fruit () constructor in this prototype pattern:
 
-```
+```javascript
 var mangoFruit = new Fruit ();
 mangoFruit.showName(); //
 mangoFruit.nativeTo();
@@ -238,7 +238,7 @@ How to Access Properties on an ObjectThe two primary ways of accessing propertie
 
 Dot Notation
 
-```
+```javascript
 // We have been using dot notation so far in the examples above, here is //another example again: 
 var book = {title: "Ways to Go", pages: 280, bookMark1:"Page 20"}; 
 // To access the properties of the book object with dot notation, you do //this: 
@@ -264,7 +264,7 @@ Objects have inherited properties and own properties. The own properties are pro
     
 To find out if a property exists on an object (either as an inherited or an own property), you use the in operator:
 
-```
+```javascript
 // Create a new school object with a property name schoolName
 var school = {schoolName:"MIT"};
 
@@ -282,7 +282,7 @@ console.log("toString" in school);  // true
 
 To find out if an object has a specific property as one of its own property, you use the hasOwnProperty method. This method is very useful because from time to time you need to enumerate an object and you want only the own properties, not the inherited ones.
 
-```
+```javascript
 // Create a new school object with a property name schoolName
 var school = {schoolName:"MIT"};
 
@@ -310,7 +310,7 @@ Properties inherited from Object.prototype are not enumerable, so the for/in loo
 
 For example:
 
-```
+```javascript
  //Use of the for/in loop to access the properties in the school object
 for (var eachItem in school) {
 console.log(eachItem); // Prints schoolName, schoolAccredited, schoolLocation
@@ -351,7 +351,7 @@ The delete operator returns true if the delete was successful. And surprisingly,
 
 These examples illustrate:
 
-```
+```javascript
 var christmasList = {mike:"Book", jason:"sweater" }
 delete christmasList.mike; // deletes the mike property
 
@@ -402,7 +402,7 @@ To Deserialize your object (convert it to an object from a string), you use the 
 
 JSON.stringify Examples:
 
-```
+```javascript
 var christmasList = {mike:"Book", jason:"sweater", chelsea:"iPad" }
 JSON.stringify (christmasList);
 // Prints this string:

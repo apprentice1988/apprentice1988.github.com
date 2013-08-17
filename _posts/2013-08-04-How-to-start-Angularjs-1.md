@@ -23,7 +23,7 @@ AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架�
 开始这么做的时候，一定会感到十分困惑，特别是你已经体验了其他的将JS和HTML分开的框架。
 让我们看一下用AngularJS写的最简单的app
 
-```
+```html
 <!doctype html>
 <html ng-app>
   <head>
@@ -53,7 +53,7 @@ AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架�
 ## 建立你的应用
 在这部分，我们讨论我们称作的`myApp`的应用。 你可以`git clone`我们的项目，也可以跟着介绍一步步做。 创建index.html文件，填入如下内容：
 
-```
+```html
 <!doctype html>
 <html ng-app="myApp">
 	<head>
@@ -78,7 +78,7 @@ touch js/main.js
 定义一个 AngularJS 应用， 我们首先需要定义	`angular.module`。一个Angular module是方法函数的一个简单的集合。当app “booted”时需要运行这个module。
 下面，我们需要在`main.js`中定义这个module
 
-```
+```javascript
 var app = angular.module("myApp",[]);
 ```
 
@@ -87,7 +87,7 @@ var app = angular.module("myApp",[]);
 
 我们可以通过简单的把我们的app名字做了index.html的参数去实例化我们自己的app（module）。
 
-```
+```html
 <html ng-app="myApp"></html>
 ```
 
@@ -95,7 +95,7 @@ var app = angular.module("myApp",[]);
 
 我们可以在DOM任何元素上设置`ng-app`, 这些元素是 Angular启动的地方。
 
-```
+```html
 <h2>I am not inside an AngularJS app</h2>
 <div ng-app="embeddedApp">
 	<h3>Inside an AngularJs app</h3>
