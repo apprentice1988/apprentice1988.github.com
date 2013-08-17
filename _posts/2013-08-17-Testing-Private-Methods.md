@@ -95,6 +95,7 @@ class InStockBook
 	end
 end
 ```
+
 如果你猜`Inventory` 是那个不具有外部行为的私有方法，恭喜你答对了。 `Inventory#item_class`的唯一目的就是使`Inventory#count`和`Inventory#receive`方法更容易读，所以，没必要浪费时间写如下测试方法。
 ```ruby
 def test_item_class
@@ -151,6 +152,7 @@ end
 ```
 
 一种方法是模仿调用`isbn_from_service`,如下：
+
 ```ruby
 def test_retreive_isbn
 	book = InstockBook.new("Ruby Best Practices", 10)
