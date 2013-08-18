@@ -58,3 +58,19 @@ body {
   -o-transition: color 0.14s 0.2s ease-out;
   transition: color 0.14s 0.2s ease-out;
 }
+
+.blog-title a {
+  color: #262e37;
+  text-decoration:none;
+  transition: color 0.15s ease-in, background-color 0.15s ease-in;
+  -webkit-transition: color 0.15s ease-in, background-color 0.15s ease-in;
+  -moz-transition: color 0.15s ease-in, background-color 0.15s ease-in;
+  -o-transition: color 0.15s ease-in, background-color 0.15s ease-in;
+  font-size:25px;
+  font-family: "Geogrotesque-SemiBold", "HelveticaNeue", "Helvetica, sans-serif";
+}
+
+.blog-title a:hover {
+  color: #46b4d3;
+  text-shadow: 1px 1px 1px #fefefe;
+}
