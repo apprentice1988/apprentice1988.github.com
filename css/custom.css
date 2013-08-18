@@ -67,10 +67,32 @@ body {
   -moz-transition: color 0.15s ease-in, background-color 0.15s ease-in;
   -o-transition: color 0.15s ease-in, background-color 0.15s ease-in;
   font-size:25px;
-  font-family: "Geogrotesque-SemiBold", "HelveticaNeue", "Helvetica, sans-serif";
 }
 
 .blog-title a:hover {
   color: #46b4d3;
   text-shadow: 1px 1px 1px #fefefe;
+}
+
+
+#tags-logo {
+  position: absolute;
+  top: 70px;
+  right: 10%;
+  -webkit-transform:skewX(160deg);
+  transform:skewX(160deg);
+}
+
+#tags-logo a {
+  font-size:20px;
+  color:#cb4a29;
+  opacity: .95;
+  text-shadow: .06em .06em #fefefe;
+  text-transform:uppercase;
+  padding-top:20px;
+}
+
+.article-titles {
+  width:60%;
+  margin-left:35%;
 }
