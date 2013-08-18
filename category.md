@@ -1,24 +1,20 @@
 ---
 layout: default
-title : 文章分类
 ---
-
-
-文章列表
---------
-
-
+<div id="categories-number">
 {% for category in site.categories %}
+<span>{{category[0]}} - {{category[1] | size}}</span>
+{% endfor %}
+</div>
 
-<a id="{{category[0]}}"></a>
-
-####{{category[0]}} ({{category[1] | size}})
+{%for category in site.categories%}
+##<span class="category">{{category[0]}}</span>
 
 {% for post in category[1] %}
 
-- [{{post.title}}]({{post.url}})
+<span class="post-title-in-category">[{{post.title}}]({{post.url}})</span>
 
 {% endfor %}
 
 {% endfor %}
-
+<div class="footheight"></div>
