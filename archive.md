@@ -1,16 +1,10 @@
 ---
-layout: default
-title : 文章列表
+layout: archive
 ---
 
-
-文章列表
---------
-
 {% for post in site.posts %}
-
-- {{ post.date | date: "%Y-%m-%d"}} &raquo; [{{ post.title }}]({{ post.url }})
-
+-[{{ post.title }}]({{ post.url }}) <time>{{ post.date | date: '%Y-%m-%d'}}</time>
+  [全文阅读 &raquo;]({{ post.url }})
 {% endfor %}
 
 
