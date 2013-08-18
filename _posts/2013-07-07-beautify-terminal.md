@@ -3,7 +3,7 @@ layout: post
 category: tools
 ---
 
-### 1. 美化terminal
+#### 1. 美化terminal
 
 原生的bash样子是这样的
 
@@ -28,7 +28,7 @@ PS1="$c2\W $c3(\$(~/.rvm/bin/rvm-prompt v g)) $c1\$(parse_git_branch) $c_1$ "
 
 <img src="/css/images/new-terminal.png">
 
-### 2. 美化git log
+#### 2. 美化git log
 
 美化之前是这样的
 

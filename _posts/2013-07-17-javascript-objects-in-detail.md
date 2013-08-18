@@ -5,7 +5,7 @@ category: javascript
 
 JavaScript’s core—most often used and most fundamental—data type is the Object data type. JavaScript has one complex data type, the Object data type, and it has five simple data types: Number, String, Boolean, Undefined, and Null. Note that these simple (primitive) data types are immutable, they cannot be changed, while objects are mutable.
 
-### What is an Object    
+#### What is an Object    
 
 An object is an unordered list of primitive data (and sometimes reference data types) types that are stored as name-value pairs. Each item in the list is called a property (functions are called methods) and each property name has to be unique and can be a string or a number.
 
@@ -30,7 +30,7 @@ console.log(ageGroup["30"]}; // Children
     
 As a JavaScript developer you will most often use the object data type, mostly for storing data and for creating your own custom methods and functions.
 
-### Reference Data Type and Primitive Data Types    
+#### Reference Data Type and Primitive Data Types    
 
 One of the main differences between reference data type and primitive data types is reference data type’s value is stored as a reference, it is not stored directly on the variable as a value like the primitive data types are. For example:
 
@@ -59,19 +59,19 @@ console.log(person.name); // Bryant
 
 In this example, we copied the person object to anotherPerson, but because the value in person was stored as a reference and not an actual value, when we changed the person.name property to “Bryant” the anotherPerson reflected the change because it never stored an actual copy of it’s own value of the person’s properties, it only had a reference to it.
 
-### Object Data Properties Have Attributes    
+#### Object Data Properties Have Attributes    
 Each data property (object property that store data) has not only the name-value pair, but also 3 attributes (the three attributes are set to true by default):
-#### —  Configurable Attribute: Specifies whether the property can be deleted or changed.
-#### — Enumerable: Specifies whether the property can be returned in a for/in loop.
-#### — Writable: Specifies whether the property can be changed.
+##### —  Configurable Attribute: Specifies whether the property can be deleted or changed.
+##### — Enumerable: Specifies whether the property can be returned in a for/in loop.
+##### — Writable: Specifies whether the property can be changed.
 
 Note that ECMAScript 5 specifies accessor properties along with the data properties noted above. And the accessor properties are functions (getters and setters). We will learn more about ECMAScript 5 in an already-scheduled post slated for February 15.
 
-### Creating Objects
+#### Creating Objects
 
 These are the two common ways to create objects: 
 
-#### Object Literals
+##### Object Literals
 
 The most common and, indeed, the easiest way to create objects is with the object literal described here:
 
@@ -83,7 +83,7 @@ var myBooks = {};
 var mango = { color: "yellow", shape: "round", sweetness: 8, howSweetAmI: function () { console.log("Hmm Hmm Good"); } }
 ```
 
-#### Object Constructor
+##### Object Constructor
 
  The second most common way to create objects is with Object constructor. A constructor is a function used for initializing new objects, and you use the new keyword to call the constructor.
 
@@ -132,7 +132,7 @@ To solve these repetitive problems, software engineers have invented patterns (s
 
 Here are two common patterns for creating objects. If you have done the Learn JavaScript Properly course, you would have seen the lessons in the Code Academy used this first pattern frequently:
 
-### Constructor Pattern for Creating Objects
+#### Constructor Pattern for Creating Objects
 
 ```javascript
 function Fruit (theColor, theSweetness, theFruitName, theNativeToLand) {
@@ -168,7 +168,7 @@ var pineappleFruit = new Fruit ("Brown", 5, "Pineapple", ["United States"]); pin
 
 If you had to change the fruitName function, you only had to do it in one location. The pattern encapsulates all the functionalities and characteristics of all the fruits in by making just the single Fruit function with inheritance.
 
-#### Notes:
+##### Notes:
 
 — An inherited property is defined on the object’s prototype property. For example: someObject.prototype.firstName = “rich”; 
 
@@ -198,7 +198,7 @@ aMango.printStuff = function () {return “Printing”;}
 aMango.printStuff ();
 ```
 
-### Prototype Pattern for Creating Objects
+#### Prototype Pattern for Creating Objects
 
 Before we discuss the Prototype Pattern, you should already understand JavaScript’s prototype. If you don’t, read my post JavaScript Prototype in Plain, Detailed Language
 
@@ -230,7 +230,7 @@ mangoFruit.nativeTo();
 // Grown in:USA
 ```
 
-### Further Reading
+#### Further Reading
 
 For a complete discussion on these two patterns and a thorough explanation of how each work and the disadvantages of each, read Chapter 6 of Professional JavaScript for Web Developers. You will also learn which pattern Zakas recommends as the best one to use (Hint: it is neither of the 2 above).
 
@@ -258,7 +258,7 @@ console.log (book["bookMark" + 1]); // Page 20 
 
 Accessing a property on an object that does not exist will result in undefined.
 
-### Own and Inherited Properties
+#### Own and Inherited Properties
 
 Objects have inherited properties and own properties. The own properties are properties that were defined on the object, while the inherited properties were inherited from the object’s Prototype object.
     
@@ -278,7 +278,7 @@ console.log("schoolType" in school);  // false
 console.log("toString" in school);  // true
 ```
 
-#### hasOwnProperty
+##### hasOwnProperty
 
 To find out if an object has a specific property as one of its own property, you use the hasOwnProperty method. This method is very useful because from time to time you need to enumerate an object and you want only the own properties, not the inherited ones.
 
@@ -304,7 +304,7 @@ console.log(eachItem); // Prints schoolName, schoolAccredited, schoolLocation
 }
 ```
 
-### Accessing Inherited Properties
+#### Accessing Inherited Properties
 
 Properties inherited from Object.prototype are not enumerable, so the for/in loop does not show them. However, inherited properties that are enumerable are revealed in the for/in loop iteration.
 
@@ -341,7 +341,7 @@ console.log(eachItem); // Prints educationLevel, schoolName, schoolAccredited, a
     
 In the last example, note the educationLevel property that was defined on the HigherLearning function is listed as one of the school’s properties, even though educationLevel is not an own property—it was inherited.
 
-### Object’s Prototype Attribute and Prototype Property
+#### Object’s Prototype Attribute and Prototype Property
 
 The prototype attribute and prototype property of an object are critically important concepts to understand in JavaScript. Read my post JavaScript Prototype in Plain, Detailed Language for more. 
 Deleting Properties of an Object 
@@ -395,7 +395,7 @@ delete school.educationLevel2; true (always returns true, as noted earlier)
 console.log(school.educationLevel2); University 2
 ```
 
-### Serialize and Deserialize Objects
+#### Serialize and Deserialize Objects
 
 To transfer your objects via HTTP or to otherwise convert it to a string, you will need to serialize it (convert it to a string); you can use the JSON.stringify function to serialize your objects. Note that prior to ECMAScript 5, you had to use a popular json2 library (by Douglas Crockford) to get the JSON.stringify function. It is now standardized in ECMAScript 5.
 To Deserialize your object (convert it to an object from a string), you use the JSON.parse function from the same json2 library. This function too has been standardized by ECMAScript 5.

@@ -2,7 +2,7 @@
 layout: post
 category: Angular-Js
 ---
-##第二部分：Scopes
+#### 第二部分：Scopes
 一个`$scope`是一个链接view到控制器的物件。 在MVC框架中，这`$scope`就扮演了Model。提供了一个运行在DOM元素中的执行文件。
 
 尽管听起来有些复杂， 但是`$scope`只是一个javascript物件。因为控制器和页面都能获取`$scope`，所以它可以被用来作为纽带。`$scope`可以为我们提供数据和方法供我们在页面中使用，就像下面将看到的那样。
@@ -18,7 +18,7 @@ app.run(function($rootScope) {
 ```
 现在，我们可以在我们页面的任何地方，使用模板去引用这个属性：{{}}， 如下：
 
-```javascript
+```
 {{name}}
 ```
 ###

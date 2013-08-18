@@ -101,7 +101,7 @@ body {
   font-size:20px;
   margin-top:10px;
   padding-left:10%;
-  font-family: "Geogrotesque-Light", "HelveticaNeue", Helvetica, sans-serif;
+  font-family: "Roboto","Rokkitt","Oswald",sans-serif;
 }
 
 #categories-number span {
@@ -118,7 +118,7 @@ body {
 .category {
   font-size: 30px;
   line-height:1.8em;
-  font-family: "Geogrotesque-SemiBold", "HelveticaNeue", Helvetica, sans-serif;
+  font-family:"Rokkitt","Roboto","Oswald",sans-serif;
   font-weight:normal;
   box-sizing:border-box;
   margin-left:10%;
@@ -130,7 +130,7 @@ body {
 
 .post-title-in-category a{
  color:#cb4a29;
- font-family:"Geogrotesque-Light", "HelveticaNeue", Helvetica, sans-serif;
+ font-family:"Raleway","Source Sans Pro", "Lora","Arimo",sans-serif;
  transition: color 0.15s ease-in, background-color 0.15s ease-in;
  -webkit-transition:color 0.15s ease-in, background-color 0.15s ease-in;
  -moz-transition:color 0.15s ease-in, background-color 0.15s ease-in;
@@ -143,4 +143,10 @@ body {
 
 .footheight {
   height:100px;
+}
+
+#post-category a {
+  font-size:20px;
+  margin-left:10%;
+  line-height:60px;
 }

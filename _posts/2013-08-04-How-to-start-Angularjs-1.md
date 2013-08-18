@@ -4,19 +4,19 @@ category: Angular-Js
 ---
 AngularJs 重新定义了构建前端应用的方式。它填平了HTML和JS之间的沟壑。
 
-### AngularJS填平html和js的沟壑
+#### AngularJS填平html和js的沟壑
 不需要直接操纵DOM， 你只需要在DOM的metadata中进行标注，Angular帮助你操作。
 
 AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架中建立AugularJS 应用。
 
 虽然你从未接触过AngularJs，接下来的七个部分，会带你用AngularJS写app。
 
-## 最重要的事： 什么时候你需要AngularJS？
+#### 最重要的事： 什么时候你需要AngularJS？
 当你建立客户端单页app时， AngularJS是一个理想的*MV框架。他不是一个库，而是一个建立动态web页面的框架。 它专注于扩展HTML和提供动态数据binding，同时能和jQuery能很好的配合。
 
 如果你在建立单页app， AngularJS是理想的选择。Gmail, Google Docs, Twitter, Facebook都注入了AngularJS 的特点。 游戏开发和其他过于操作DOM和需要流速度的应用就不适合AngularJS了。
 
-## 如何开始写app
+#### 如何开始写app
 通过这个教程，我们将建立一个NPR audio播放器，可以向我们展示现在的故事，在浏览器播放。 查看最后的demo, 请点击[这里](http://www.ng-newsletter.com/code/beginner_series/)
 
 写AngularJS时，我们在展示的同事，写下动作和交互结果。
@@ -50,7 +50,7 @@ AngularJS不依赖任何其他的框架，你甚至可以在non-AngularJS框架�
 第二点， 我们告诉 AngularJS我们要建立双向数据关联的`yourName` model
 最后， 我们告诉 AngularJS去展示`yourName`的数据
 
-## 建立你的应用
+#### 建立你的应用
 在这部分，我们讨论我们称作的`myApp`的应用。 你可以`git clone`我们的项目，也可以跟着介绍一步步做。 创建index.html文件，填入如下内容：
 
 ```html
@@ -74,7 +74,7 @@ touch js/main.js
 
 我们在HTML页面中加载了 AngularJS 和我们将要写的main.js。 我们接下来要做的多部分都在main.js中完成。
 
-## angular.module
+#### angular.module
 定义一个 AngularJS 应用， 我们首先需要定义	`angular.module`。一个Angular module是方法函数的一个简单的集合。当app “booted”时需要运行这个module。
 下面，我们需要在`main.js`中定义这个module
 
