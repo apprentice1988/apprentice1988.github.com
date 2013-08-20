@@ -86,5 +86,4 @@ class RegistrationController < ApplicationController
 	end
 end
 ```
-
 这个`registration service`只对和registration相关的数据进行操作。注意， 这个service可以转换成其他的使用Http协议的服务而不仅仅是数据库。
