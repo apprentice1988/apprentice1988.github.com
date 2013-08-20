@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Ruby
+category: Practicing Ruby
 ---
 我决定从一个最基本但是又至关重要的一个地方说起：查询方法的路径。我们一起通过简单的例子做一些简单的挖掘。
 

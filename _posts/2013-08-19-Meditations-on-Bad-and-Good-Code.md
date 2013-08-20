@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Ruby
+category: Practicing Ruby
 ---
 在这个练习中，目标是先要产生一些不良的代码，然后一边解释为什么这样改，一边慢慢的完善它。我一般会从一个非常简单的问题开始，然后加上一些怪异的部分，确保它执行起来比较糟糕。
 
@@ -30,9 +30,9 @@ end
 但是，魔鬼在细节中。 为了得到一个完整的可以玩的游戏，你需要一些基本的错误判断保证你不会超出棋谱的边界，也会放到对方棋子上面。你也需要判断什么时候某人胜出，或者游戏打平。然后这些看上去不需要太多的工作，在下面的代码中你将看到我们增加了一点复杂度。
 
 ```ruby
-board   = [[nil,nil,nil],
-           [nil,nil,nil],
-           [nil,nil,nil]]
+board = [[nil,nil,nil],
+         [nil,nil,nil],
+         [nil,nil,nil]]
 
 left_diagonal  = [[0,0],[1,1],[2,2]]
 right_diagonal = [[2,0],[1,1],[0,2]]
@@ -93,4 +93,22 @@ end
 你可以自己放在github中，没改一处，在commit中明确标出改动的理由。
 我也会讲一下我改动的每一步及其原因。我也将总结一些从这些技术中获得的经验，希望你能有所收获。
 
+你已经看到了我们特意编写的Tic Tac Toe的不良的执行代码。接下来，将展示一些修缮的代码已经实现它的步骤。但是在我们向前走之前，我们需要快速的回头看一下，我们出发的位置。
+
+```ruby
+board = [[nil,nil,nil],
+         [nil,nil,nil],
+         [nil,nil,nil]]
+
+players = [:X,:O].cycle
+
+loop do 
+  current_player = players.next
+  puts board.map {|row|row.map{|e|e||" "}.join("|")}.join("\n")
+  print "\n>>"
+  row, col = gets.split.map {|e|e.to_i}
+  puts 
+  board[row][col] = current_player
+end
+```
 

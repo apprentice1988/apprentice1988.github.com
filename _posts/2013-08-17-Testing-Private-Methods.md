@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Ruby
+category: Practicing Ruby
 ---
 在你的测试中，如果你使用`send`方法去测试私有方法，那基本可以肯定你做错了。大部分的私有方法倾向于如下几类，没有一种需要`send`去测试的：
 - 一个方法没有自己的行为（例如一个helper function）
