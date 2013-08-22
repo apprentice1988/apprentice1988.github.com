@@ -151,3 +151,8 @@ body {
   margin-left:10%;
   line-height:60px;
 }
+
+.search-form {
+  width:300px;
+  margin-left:72%;
+}
