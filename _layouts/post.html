@@ -9,50 +9,55 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
 		<link rel="stylesheet" href="/css/custom.css">
+		<link rel="stylesheet" href="/css/nprogress.css">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Handlee">
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 		<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
 		<script src="/js/jquery-min.js" type="text/javascript" ></script>
 		<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="/js/nprogress.js"></script>
+		<script src="/js/post.js"></script>
 	</head>
-	<body id="top">
-		<div class="row">
-			<aside class="span3" style="margin-top:150px;">
-				{%for cg in page.categories%}
-				  <div id="post-category"><a href="/category.html#{{cg}}">{{cg}}</a></div>
-				  {% for category in site.categories %}
-					{% if cg == category[0] %}
-					  {% for post in category[1] %}
-                        <p><span class="post-title-in-category"><a href="{{post.url}}">{{post.title}}</a></span></p>
-                      {% endfor %}
-					{% endif %}
-				  {% endfor %}
-				{%endfor%}
-			</aside>
-			<article id="post" class="span9" style="margin-top:60px;width:50%;margin-left:5%;">
-			  <h2>{{ page.title }}&nbsp&nbsp<time date="{{ page.date }}">{{ page.date|date: "%Y-%m-%d"}}</time></h2>
-				{{ content }}
-		
-			  <hr />
-			  <div class="page fix">
-				{%if page.previous%}
-					<span class="prev"><a href="{{page.previous.url}}">←《{{page.previous.title}}》</a></span>
-				{%endif%}
-				{%if page.next%}
-					<span class="next"><a href="{{page.next.url}}">《{{page.next.title}}》→</a></span>
-				{%endif%}
-			  </div>
-			  <hr />
-			  <p id="back-top" style="display: block;">
-			    <a href="#top">
-			      <span></span>
-			      Back to Top
-			     </a>
-			  </p>
-			</article><br><br><br><br><br><br><br>
-		</div>
-		<!--Disqus begin-->
-    <div id="disqus_thread" style="margin-left:25%;width:50%;"></div>
+	<body id="top" style="overflow:hidden;">
+		<div class="scrollable">
+			<div class="row">
+				<aside class="span3" style="margin-top:150px;">
+					{%for cg in page.categories%}
+					  <div id="post-category"><a href="/category.html#{{cg}}">{{cg}}</a></div>
+					  {% for category in site.categories %}
+						{% if cg == category[0] %}
+						  {% for post in category[1] %}
+	                        <p><span class="post-title-in-category"><a href="{{post.url}}">{{post.title}}</a></span></p>
+	                      {% endfor %}
+						{% endif %}
+					  {% endfor %}
+					{%endfor%}
+				</aside>
+				<article id="post" class="span9" style="margin-top:60px;width:50%;margin-left:5%;">
+				  <h2>{{ page.title }}&nbsp&nbsp<time date="{{ page.date }}">{{ page.date|date: "%Y-%m-%d"}}</time></h2>
+					{{ content }}
+			
+				  <hr />
+				  <div class="page fix">
+					{%if page.previous%}
+						<span class="prev"><a href="{{page.previous.url}}">←《{{page.previous.title}}》</a></span>
+					{%endif%}
+					{%if page.next%}
+						<span class="next"><a href="{{page.next.url}}">《{{page.next.title}}》→</a></span>
+					{%endif%}
+				  </div>
+				  <hr />
+				  <p id="back-top" style="display: block;">
+				    <a href="#top">
+				      <span></span>
+				      Back to Top
+				     </a>
+				  </p>
+				</article><br><br><br><br><br><br><br>
+			</div>
+			<!--Disqus begin-->
+	    <div id="disqus_thread" style="margin-left:25%;width:50%;"></div>
+	  </div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'apprenticeblog'; // required: replace example with your forum shortname
@@ -67,5 +72,6 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 		<!--Disqus end-->
+		<!-- nprogress bind scroll -->
 	</body>
 </html>

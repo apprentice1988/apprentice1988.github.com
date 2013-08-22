@@ -156,3 +156,12 @@ body {
   width:300px;
   margin-left:72%;
 }
+
+.scrollable {
+   overflow-y: auto;
+   position:absolute;
+   top: 0px;
+   left:0px;
+   right:-20px;
+   bottom:0px;   
+}
