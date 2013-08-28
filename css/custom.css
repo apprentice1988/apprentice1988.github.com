@@ -176,3 +176,7 @@ body {
   border-radius: 10px;
   background-color:#c3c3c3;
 }
+
+img[alt=data-binding] {
+  margin-left:30%;
+}
