@@ -177,6 +177,14 @@ body {
   background-color:#c3c3c3;
 }
 
+blockquote p {
+  font-size: 13px !important;
+}
+
+code.language-text {
+  color:wheat !important;
+}
+
 img[alt=data-binding] {
   margin-left:30%;
 }
