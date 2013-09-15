@@ -48,7 +48,53 @@ end
 
  #####2.10 Onward and Upward
 
+####第三章：类，对象和变量
 
+######p 与 puts
+当对一个对象调用`puts`时，puts方法会调用`to_s`将对象转换为string显示出来
 
+```ruby
+class BookInStock
+	def initialize(isbn,price)
+		@isbn = isbn
+		@price = price
+	end
+end
 
+b1 = BookInStock.new("isbn1",3)
+puts b1
+```
+
+结果输出：
+
+```ruby
+#<BookInStock:0x007fb424847468>
+```
+
+我们如果改变`to_s`方法，输出结果将相应改变
+
+```ruby
+class BookInStock
+	def initialize(isbn,price)
+		@isbn = isbn
+		@price = price
+	end
+
+	def to_s
+		"ISBN: #{@isbn}, price: #{@price}"
+	end
+end
+
+b1 = BookInStock.new("isbn1",3)
+puts b1
+```
+
+输出结果：
+
+```
+ISBN： isbn1, price： 3.0
+```
+
+#####3.1 对象和属性
+我们将一个浮点小数a转换成百分数时，我们习惯使用`Integer(a * 1000 + 0.5)`,为什么要加0.5呢？因为浮点小数不会特别准确的显示，比如`33.8 × 100`， 输出的结果是3379.9999999999995，使用`Integer`方法，会去尾变成3379.在`Integer`方法前加上0.5,保证我们生成最准确的结果。这个例子也告诉我们为什么金融计算中更想使用BigDecimal而不是float。
 
