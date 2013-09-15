@@ -98,3 +98,61 @@ ISBN： isbn1, price： 3.0
 #####3.1 对象和属性
 我们将一个浮点小数a转换成百分数时，我们习惯使用`Integer(a * 1000 + 0.5)`,为什么要加0.5呢？因为浮点小数不会特别准确的显示，比如`33.8 × 100`， 输出的结果是3379.9999999999995，使用`Integer`方法，会去尾变成3379.在`Integer`方法前加上0.5,保证我们生成最准确的结果。这个例子也告诉我们为什么金融计算中更想使用BigDecimal而不是float。
 
+#####3.2 Classes Working with Other Classes
+Ruby有两个加载外部文件的方法，`require`和`require_relative`. 如果我们加载的文件与引用文件在同一个目录下，那么可以使用`require_relative`.
+
+#####3.3 Access Control
+```ruby
+class MuClass
+
+	def method1
+	end
+
+protected
+	def method2
+	end
+
+private
+	def method3
+	end
+
+public
+	def method4
+	end
+end
+```
+ 
+也可写作
+
+```ruby
+class MyClass
+	def method1
+	end
+	def method2
+	end
+	# ... and so on
+
+	public :method1, :method4
+	protected :method2
+	private :method3
+end
+```
+
+######3.4 Variables
+变量是对象吗？ 在Ruby，不是！它只是对象的引用。善于使用`.dup`.
+为了防止一个特别的对象被改动，可以使用`.freeze`
+
+```ruby
+person1 = "Tim"
+person2 = person1
+person1.freeze
+person2[0] = "J"
+```
+会报错：
+
+```
+		from prog.rb:4:in `<main>`
+prog.rb:4:in `[]=`: can't modify forzen String (RuntimeError)
+```
+
+
