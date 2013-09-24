@@ -155,4 +155,91 @@ person2[0] = "J"
 prog.rb:4:in `[]=`: can't modify forzen String (RuntimeError)
 ```
 
+####第四章 Containers，Blocks and Iterators
+#####4.1 Arrays
+读写array
 
+```ruby
+a = [1,3,4,7,9]
+a[2,2] #[start,count]   #=>[4,7]
+a[1..3] #=>[3,4,7]
+a[1,0] = [0,8] #=>[1,0,8,3,4,7,9]  [start,count to remove] 
+a[2,2] = [2,4] #=>[1,0,2,4,4,7,9]
+```
+
+array的增减操作
+
+```ruby
+stack = []
+stack.push "red"
+stack.push "green"
+stack #=>["red", "green"]
+stack.unshift "blue"
+stack #=> ["blue","red", "green"]
+stack.pop #=>"green"
+stack.shift #=>"blue"
+stack #=>["red"]
+```
+
+#####4.2 Hashes
+
+#####4.3 Blocks and Iterators
+斐波那契方法
+
+```ruby
+def fib_up_to(max)
+	i1, i2 = 1,1
+	while i1 <= max
+		yield i1
+		i1, i2 = i2, i1+i2
+	end
+end
+
+fib_up_to(1000) {|f|print f, " "}
+```
+结果是：
+```
+1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+```
+
+有的时候你想要记录你执行某个block的次数，那么`with_index`将变得十分有用。它会增加一个连续增长的数字跟在迭代返回值后边，然后同时传递给代码块：
+
+```ruby
+f = File.open("testfile")
+f.each.with_index do |line,index|
+	puts "Line #{index} is: #{line}"
+end
+f.close
+```
+结果：
+
+```
+Line 0 is: This is line one
+Line 1 is: This is line two
+Line 2 is: This is ...
+```
+
+关于迭代，下面将介绍另一个方法——`inject`. inject可以是你集聚递归一个集合。如下：
+
+```ruby
+[1,3,5,7].inject(0) {|sum,element| sum + element}  #=> 16
+[1,3,5,7].inject(1） {|product, element| product * element})   #=> 105
+```
+
+`inject`是这样工作的： 第一次执行关联的代码块时， `sum`被设为 inject的参数，`element`设为集合的第一个元素。第二次及其以后的代码块执行，`sum`设为上次代码块执行返回的结果值，知道最后一次执行代码块，返回值为最后的	sum值。有一件事需要提醒：如果`inject`没有带参数，那么集合第一个元素将作为初始值，从第二个元素开始迭代。
+
+上面的代码也可以写作：
+
+```ruby
+[1,3,5,7].inject {|sum,element| sum + element}  #=> 16
+[1,3,5,7].inject {|product, element| product * element})   #=> 105
+```
+
+关于inject，还有一个神奇的技巧，我们可以将要调用在集合元素的方法名作为inject的参数。如下：
+
+```ruby
+[1,3,5,7].inject(:+)   #=>16
+[1.3.5.7].inject(:*)    #=>105
+```
+
+之所以可以如上写代码，是因为加法和乘法是简单的数字方法，加上冒号是其变成相应的symbol。
