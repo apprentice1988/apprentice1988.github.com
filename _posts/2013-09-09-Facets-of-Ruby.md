@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Programming Ruby 1.9 & 2.0
+category: Programming Ruby
 ---
 这篇文章是我学习《Programming Ruby 1.9 & 2.0》的学习笔记，这本书每一章分的比较细，所以我抛弃了一章一文的想法，改用更加灵活的方法，也许一篇文章只有一章内容，也许一篇文章涵盖了四五章的内容。
 自己翻译的能力比较欠缺，就当自己记性差，用烂笔头记一下。
