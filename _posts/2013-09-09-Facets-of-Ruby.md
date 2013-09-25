@@ -243,3 +243,89 @@ Line 2 is: This is ...
 ```
 
 之所以可以如上写代码，是因为加法和乘法是简单的数字方法，加上冒号是其变成相应的symbol。
+
+###### Enumerators-External Iterators
+我们上面讲到了Ruby的内置迭代器，`.each`,`find`,`collect`。尽管他们功能强大，但必须认识到他们的局限性。第一个局限性是你需要将一个迭代器仅仅视为对象，比如你将一个迭代器作为参数传给一个方法，该方法需要得到迭代器返回的每一个结果。另一个问题是你很难并行处理两个迭代集合。
+幸运的是Ruby带有内置的`Enumerator`类，可以执行外部迭代器。你可以调用`to_enum`在一个数组或者哈希对象上：
+
+```ruby
+a = [1,3,"cat"]
+b = { dog: "canine", fox: "vulpine"}
+
+#create Enumerators
+enum_a = a.to_enum
+enum_h = b.to_enum
+
+enum_a.next    #=> 1
+enum_h.next    #=> [:dog, "canine"]
+enum_a.next    #=> 3
+enum_h.next    #=> [:fox, "vulpine"]
+```
+
+大部分的内置迭代器如果不带block，也会返回一个Enumerator对象：
+
+```ruby
+a = [1,3,"cat"]
+enum_a = a.each   #create an Enumerator using an internal iterator
+
+enum_a.next   #=>1
+enum_a.next   #=>3
+```
+
+Ruby有一个只重复调用代码块的方法，`loop`。特别的是，当某些条件出现时，代码块会停止这个`loop`方法。当使用一个Enumerator对象时，`loop`方法就变得比较聪明了——block中一个Enumerator对象将所有内在元素执行完的时候，会停止`loop`。如下：
+
+```ruby
+short_enum = [1,2,3].to_enum
+long_enum = ("a".."z").to_enum
+
+loop do 
+	puts "#{short_enum.next} - #{long_enum.next}"
+end
+```
+结果如下：
+
+```
+1 - a
+2 - b
+3 - c
+```
+
+###### Enumerators Are Objects
+计数器可以通过正常的执行代码将其转为一个对象。这就使得我们写代码时可以通过使用计数器实现一般`loop`难以实现的功能。
+比如，在Enumerator 的module中定义了`each_with_index`方法。 它会调用主类的`each`方法，并返回一个连续的index值。
+
+```ruby
+result = []
+['a','b','c'].each_with_index {|item,index| result << [item,index]}
+result   #=> [["a", 0], ["b", 1],["c", 2]]
+```
+但是如果你想要迭代并且得到一个index值，但是又想使用一个不同于each的方法怎么办？比如，你可能希望迭代一个字符串中的每一个字符。在String类中没有内置`each_char_with_index`方法。
+这个时候Enumerator就派上了用场。 字符串的`each_char`方法如果你不后置代码块，会返回一个enumerator对象，然后就可以在这个对象上调用`each_with_index`方法了。
+
+```ruby
+result = []
+"cat".each_char.each_with_index {|item,index| result << [item, index]}
+result   #=> [["c", 0], ["a", 1],["t", 2]]
+```
+
+实事上，Matz给了我们一个`with_index`方法 ，使代码可读性更好。
+
+```ruby
+result = []
+"cat".each_char.with_index {|item,index| result << [item, index]}
+result   #=> [["c", 0], ["a", 1],["t", 2]]
+```
+
+当然，我们也可以明确地先生成一个Enumerator对象，然后在该对象上使用迭代。
+
+```ruby
+enum = "cat".enum_for(:each_char)
+enum.to_a   #=> ["c","a","t"]
+```
+
+如果我们要生成一个enumerator对象作为参数参与迭代，可以使用`enum_for`方法。
+
+```ruby
+enum_in_threes = (1..10).enum_for(:each_slice,3)
+enum_in_threes.to_a   #=> [[1,2,3],[4,5,6],[7,8,9],[10]]
+```
