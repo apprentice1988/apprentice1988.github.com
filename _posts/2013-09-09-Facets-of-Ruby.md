@@ -291,7 +291,7 @@ end
 ```
 
 ###### Enumerators Are Objects
-计数器可以通过正常的执行代码将其转为一个对象。这就使得我们写代码时可以通过使用计数器实现一般`loop`难以实现的功能。
+枚举符可以通过正常的执行代码将其转为一个对象。这就使得我们写代码时可以通过使用枚举符实现一般`loop`难以实现的功能。
 比如，在Enumerator 的module中定义了`each_with_index`方法。 它会调用主类的`each`方法，并返回一个连续的index值。
 
 ```ruby
@@ -328,4 +328,161 @@ enum.to_a   #=> ["c","a","t"]
 ```ruby
 enum_in_threes = (1..10).enum_for(:each_slice,3)
 enum_in_threes.to_a   #=> [[1,2,3],[4,5,6],[7,8,9],[10]]
+```
+
+###### Enumerators are Generators and Filters
+
+###### Lazy Enumerators in Ruby 2
+正如从存在的集合生成枚举符，你也可以创建一个枚举符，然后将代码块传给它。当枚举符对象需要提供一个最新的值给你的项目时，可以使用代码块中的代码。但是代码块中的代码不是从上到下的执行，而是和你项目中的其他代码并行执行。从上开始执行，到产生了一个数值停止。当需要下一个值时，执行重新开始。这就是你可以通过枚举符生成无限的结果。
+
+```ruby
+triangular_numbers = Enumerator.new do |yielder|
+	number = 0
+	count = 1
+	loop do 
+		number += count
+		count  += 1
+		yielder.yield number
+	end
+end
+
+5.times { print triangular_numbers.next, " "}
+puts
+```
+
+输出结果：
+
+```
+1 3 6 10 15
+```
+
+枚举符对象仍然是可以枚举的，意味着我们可以使用Enumerable的方法。
+
+```ruby
+triangular_numbers = Enumerator.new do |yielder|
+	number = 0
+	count = 1
+	loop do 
+		number += count
+		count += 1
+		yielder.yield number
+	end
+end
+
+p trianguler_numbers.first(5)
+```
+
+输出结果：
+
+```
+[1,3,6,10,15]
+```
+
+...
+
+###### Lazy Enumerators in Ruby2
+
+###### Blocks for Transactions
+除了作为迭代器的主体，block也可以用于定义一段代码，在一定的事务控制下去执行。例如，我经常打开一个文件，根据文件内容做一些事情，然后当结束的时候一定要关闭文件。尽管你可以使用常规的线性的代码去写这个功能，但是如果使用代码块会更加简单一些。
+
+```ruby
+class File
+	def self.open_and_process(*args)
+		f = File.open(*args)
+		yield f
+		f.close()
+	end
+end
+
+File.open_and_process("testfile","r") do |file|
+	while line = file.gets
+		puts line
+	end
+end
+```
+
+输出结果是：
+
+```
+this is line one
+this is line two
+this is line three
+and so on...
+```
+
+由Ruby直接支持的File类的文件管理自己生命周期的技术十分有用。如果`File.open`伴随着一个代码块，那么这个代码块将直接操作这个文件对象，代码块执行结束，文件被关闭。这就非常有趣了，因为这就意味这`File.open`有两个不同的行为方法。当伴随着代码块调用时，将执行代码块并关闭文件，如果不带代码块，直接返回文件对象。这种判断通过`block_given?`可以很容易判断，如果有代码块，将返回`true`，否则为`fault`。
+
+```ruby
+class File
+	def self.my_open(*args)
+		result = file = File.new(*args)
+		if block_given?
+			result = yield file
+			file.close
+		end
+		result
+	end
+end
+```
+
+###### Blocks Can Be Objects
+记得我们曾说过你可以将代码块看作一个暗在的参数传入某个方法吗？其实，你可以将这个参数变得更加明确。如果在方法中最后的参数以&作为前缀，Ruby会自动寻找代码块。代码块被转换成类Proc的一个对象，传递给参数。然后你可以将这些参数等同看成任何其他的参数。
+
+下面是一个例子，我们在一个实例方法中创建了一个proc对象，将其存为一个实例变量。然后我们可以在第二个实例方法中调用这个proc。
+
+```ruby
+class ProcExample
+	def pass_in_block(&action)
+		@stored_proc = action
+	end
+
+	def use_proc(parameter)
+		@stored_proc.call(parameter)
+	end
+end
+
+eg = ProcExample.new
+eg.pass_in_block {|param| puts "The parameter is #{param}"}
+eg.use_proc(99)
+```
+
+输出结果：
+
+```
+The parameter is 00
+```
+
+许多程序员使用这种方法储存而后调用代码块——这是一种执行回调，分表等的好方法。但是你可以再进一步。如果可以通过使用&前缀参数将一个代码块转换为对象传递给方法，那么如果一个方法转换为一个Proc对象被`caller`调用又会如何你呢？
+
+```ruby
+def create_block_object(&block)
+	block
+end
+
+bo = create_block_object {|param| puts "You called me wht #{param}"}
+
+bo.call 99
+bo.call "cat"
+end
+```
+
+输出结果：
+
+```
+You call me with 99
+You call me with cat
+```
+
+实事上，Ruby不止一个，而是用两种方法将代码块转换为对象。`lambda`和`Proc.new`都可以操作代码块，将其转换为Proc对象。两者的区别我们会在以后说明。
+
+```ruby
+bo = lambda {|param| puts "You called me with #{param}"}
+bo.call 99
+bo.call "cat"
+```
+输出结果：
+
+```
+You call me with 99
+You call me with cat
 ```
