@@ -486,3 +486,133 @@ bo.call "cat"
 You call me with 99
 You call me with cat
 ```
+
+###### Blocks Can Be Closures
+代码块可以使用附近域中的本地变量，来看一下下面的例子：
+
+```ruby
+def n_times(thing)
+	lambda {|n| thing * n}
+end
+
+p1 = n_times(23)
+p1.call(3)   #=> 69
+p1.call(4)   #=> 92
+p2 = n_times("hello ")
+p2.calls(3)   #=> "hello hello hello "
+```
+方法n_times返回一个引用方法参数的Proc。尽管block调用时，方法的参数已经超出了作用域。但是参数仍然可以被取得。这就叫封装——block引用的附近域的参数在block的整个使用周期及其由block生产的任何Proc对象的使用周期中都是可用的。
+
+```ruby
+def power_proc_generator
+	value = 1
+	lambda {value += value }
+end
+
+power_proc = power_proc_generator
+
+puts power_proc.call
+puts power_proc.call
+puts power_proc.call
+```
+
+输出结果：
+
+```
+2
+4
+6
+```
+###### An Alternative Notation
+除了如下的创建Proc对象的方法：
+
+```ruby
+lambda {|params|...}
+```
+
+你也可以使用另一个写法：
+
+```ruby
+-> params {...}
+```
+
+参数可以选择性的放在括号里。
+
+```ruby
+proc1 = -> arg {puts "In proc1 wht #{arg}"}
+proc2 = -> arg1,arg2 {puts "In proc2 with #{arg1} and #{arg2}" }
+proc3 = -> (arg1,arg2) {puts "In proc3 with #{arg1} and #{arg2}" }
+
+proc1.call "ant"
+proc2.call "bee","cat"
+proc3.call "dog","elk"
+```
+输出结果如下：
+
+```
+In proc1 with ant
+In proc2 with bee and ant
+In proc3 with dog and elk
+```
+
+使用`->`格式会比使用lambda更加简洁，当传入多于一个的Proc对象时会更加方便。
+
+```ruby
+def my_if(condition,then_clause,else_clause)
+	if condition
+		then_clause.call
+	else
+		else_clause.call
+	end
+end
+
+5.times.do |val|
+	my_if val < 2
+		-> {puts "#{val} is small"}
+		-> {puts "#{val} is big"}
+end
+``` 
+
+输出结果：
+```
+0 is small
+1 is small
+2 is big
+3 is big
+4 is big
+```
+
+###### Block Parameter Lists
+传入block的参数可以带默认值，可以是splat args（用*号前缀），关键词参数，代码块参数。例子如下：
+
+```ruby
+proc1 = lambda do |a,*b,&block|
+	puts "a = #{a.inspect}"
+	puts "b = #{b.inspect}"
+	block.call
+end
+
+proc1.call(1,2,3,4) {puts "in block1"}
+```
+
+输出如下代码：
+
+```
+a = 1
+b = [2,3,4]
+in block1
+```
+
+也可以使用另一个写法：
+
+```ruby
+proc2 = -> a,*b,&block do 
+	puts "a = #{a.inspect}"
+	puts "b = #{b.inspect}"
+	block.call
+end
+
+proc2.call {puts "in block2"}
+```
+
+##### 4.4 Container Everywhere
