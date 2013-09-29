@@ -1,0 +1,8 @@
+---
+layout: post
+category: Programming Ruby
+---
+#### 第五章： Sharing Functionality: Inheritance, Modules, and Mixins
+这一章中，我们将介绍两种分享功能的机制。首先是对于面向对象语言常用的类继承。然后我们会了解Mixins，以中更常用的继承方法，最后我们会讨论每种方法使用的场合。
+
+##### 5.1 Inheritance and Messages
