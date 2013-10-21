@@ -188,3 +188,11 @@ code.language-text {
 img[alt=data-binding] {
   margin-left:30%;
 }
+
+#back-top-image {
+  width:80px;
+  border:none;
+  box-shadow:none;
+  padding:8px;
+  cursor: pointer;
+}
