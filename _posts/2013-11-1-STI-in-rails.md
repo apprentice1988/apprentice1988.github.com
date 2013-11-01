@@ -117,6 +117,7 @@ set_inheritance_column "whatever_you_want"
 >*     computers
 >*       pc.rb
 >*       mac.rb
+
 Rails不会自动打开models中的子文件夹，所以我们要在config/application.rb中添加如下代码：
 
 ```ruby
