@@ -25,7 +25,7 @@ end
 也许也会有点惊奇的发现，`===`在Proc类中也有定义，用来创建procs和lambdas。将`===`及其右边的值作为参数，和直接调用`Proc#call`方法一样。
 
 ```ruby
-is_even = ->(n) {n.even?}
+is_evena = ->(n) {n.even?}
 is_even === 5   #=> false
 
 #same as

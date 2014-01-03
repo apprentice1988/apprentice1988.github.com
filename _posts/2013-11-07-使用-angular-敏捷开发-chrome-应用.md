@@ -3,7 +3,7 @@ layout: post
 category: Angular-Js
 ---
 
-Chrome应用是内嵌在web浏览器中，目地是实现原生应用体验的应用。因为他们是依靠浏览器运行的，可以使用ML5,javascript，css3编写，还能刀刀真正web应用所不能实现的原生似的性能。
+Chrome应用是内嵌在web浏览器中，目地是实现原生应用体验的应用。因为他们是依靠浏览器运行的，可以使用ML5,javascript，css3编写，还能实现真正web应用所不能实现的原生似的性能。
 
 Chrome应用可以使用Chrome API和服务，向用户提供一个类似总和桌面的体验。
 
@@ -144,4 +144,50 @@ Presently有两个主要的试图：
 
 > 任何时候更新了manifest.json文件，都需要在`chrome://extensions`中点击`Reload`链接
 
+#### 主要的模块
+我们全部的angular应用都将放在`js/app.js`文件中。对于我们应用的生产环境，我们可能希望将功能分拆入多个文件中，或者使用例如`grunt`的工具为我们压缩整个他们。
 
+我们的应用成为 `myApp`，所以我们用这个名字创建一个angular模块：
+
+```javascript
+angular.module('myApp',[])
+```
+
+#### 创建主页
+
+我们一起来创建应用的主页部分。在这一部分，我们将应用的部件放在一起从而使整个应用运行正常。下一部分我们配置多路由应用。
+
+##### 创建时钟
+
+Presently应用主要特性是有一个比较大的时钟在应用的正上方，并且每一秒钟都在更新。使用angular，我们可以比较简单的配置该特性。
+
+首先我们开始创建一个`MainCtrl`负责管理我们的主屏幕。 在`MainCtrl`控制器中，我们将设置一个计时器每一秒更新一次本地变量。
+
+```javascript
+angular.module('myApp',[])
+.controller('MainCtrl', function($scope,$timeout) {
+	// Build the data object
+	$scope.data = {};
+
+	// Updata function
+	var updateTime = function() {
+		$scope.data.raw = new Date();
+		$timeout(updateTime, 1000);
+	}
+
+	// Kick off the update function
+	updateTime();
+});
+```
+
+每一秒钟，我们`MainCtrl`都是可见的，`updateTime()` 函数被执行更新`$scope.data.raw`,我们的页面也将随之被更新。
+
+为了看到加载的页面，我们需要将数据绑定到文件中。我们使用一般的`{{}}`插入符号绑定数据：
+
+```html
+<div class="container">
+	<div ng-controller="MainCtrl">
+		{{ data.raw }}
+	</div>
+</div>
+```
