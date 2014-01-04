@@ -17,7 +17,7 @@ category: Piecemeal Ruby
 
 > A software task management tool. It allows your to specify and describe dependencies as well as to group tasks in a namespace.
 
-但是，现在我将模糊的一个术语'build tool'替换成了了'task management tool'。现在，我们可以更具体的描述Rake：
+但是，现在我将模糊的一个术语'build tool'替换成了'task management tool'。现在，我们可以更具体的描述Rake：
 
 * rake让你定义tasks
 * tasks 可以依赖其他的任务
@@ -27,7 +27,7 @@ category: Piecemeal Ruby
 然而，我们仍然需要对于任务下一个定义。因为你使用ruby定义任务，所以你的任务可以做你使用Ruby所能做到的事情。这就意味着在task中你可以实现相当对的事情。
 
 #### Rakefile 格式
-再接下来的posts中我们会进一步介绍Rake的DSL，这里我们先介绍一点基础的，例如下面的例子：
+这里我们先介绍一点基础的，例如下面的例子：
 
 ```ruby
 task "hello" do 
@@ -47,19 +47,19 @@ Hello, world
 
 - 第一部是创建'~/.rake'目录，放置任务定义的文件：
 
-```bash
+```
 $ mkdir ~/.rake
 ```
 
 - 接下来创建任务定义的文件，文件面不重要，但是一定要有'.rake'的扩展名:
 
-```bash
+```
 toush ~/.rake/hello.rake
 ```
 
 - 将任务添加在文件中：
 
-```bash
+```
 $echo -e 'task "hello" do \n puts "hello, World"\nend' > ~/.rake/hello.rake
 ```
 
@@ -128,3 +128,89 @@ end
 $ rake -g rollback_branch_migrations[master]
 ```
 这里我们假设`master`为我们想要更改的分支。向Rake 任务传递参数，需要在外面套用中括号。
+
+#### Task Prerequisites
+任何的Rake任务都可以选择性的有一个或多个先决条件-也可以理解为依赖。伴随着任意其他的任务，一个条件任务再需要的时候只被执行一次。
+
+让我们开始在我们的Rakefile中定一个两个任务：
+
+```ruby
+task 'one' do 
+  puts 'one'
+end
+
+task 'two' do 
+  puts 'two'
+end
+```
+
+在shell中我们可以执行：
+
+```
+$ rake one
+one
+$ rake two
+two
+```
+
+现在我们将任务'one'设置为'two'的先决任务：
+
+```ruby
+task 'one' do 
+  puts 'one'
+end
+
+task 'two' => ['one'] do  
+  puts 'two'
+end
+```
+
+如果先决条件只有一个，可以省略`[]`。
+
+#### File tasks
+对于文件，Rake有特别的方法：`file`. 文件任务和一般的任务很相近。
+
+```ruby
+file 'foo.txt' do 
+  touch 'foo.txt'
+end
+```
+尽管文件任务是处理文件的，但是如果该文件不存在，已然会创建该文件。
+
+执行任务：
+
+```
+$ rake foo.txt
+touch foo.txt
+$ ls
+foo.txt
+```
+
+如果文件任务的先决条件是另一个文件，你不需要为这个先决文件创建一个专门的文件任务，只是使用该文件名就可以了，如下例子：
+
+```ruby
+$ ls
+bar.txt
+$ rake foo.txt
+touch foo.txt
+$ rake foo.txt # running file task again, but no output
+$ ls
+bar.txt foo.txt
+```
+
+#### 有用的例子
+在rails应用中，有一些配置文件对于应用的执行很关键。但是因为这些文件包含了一些比较敏感的信息，我们选择将这些文件加入`.gitignore`,而是添加一个`.example`文件添加以下类似的信息数据，以让后来人知道需要设置的东西。这样，我们可以使用Rake去简化由`.example`文件生成配置文件的过程。
+
+```ruby
+file 'config/database.yml' => 'config/database.yml.example' do
+  cp 'config/database.yml.example', 'config/database.yml'
+end
+```
+
+可以简化代码为：
+
+```ruby
+file 'config/database.yml' => 'config/database.yml.example' do |task|
+  cp task.prerequisites.first, task.name
+end
+```
