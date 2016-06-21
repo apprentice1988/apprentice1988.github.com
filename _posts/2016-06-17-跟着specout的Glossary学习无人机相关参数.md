@@ -3,45 +3,38 @@ layout: post
 category: drone
 ---
 
-[drone.specout.com](drone.specout.com) 提供了无人机型库和无人机参数对比的功能，其中包括了很多和无人机相关的术语和术语解释，并且给出了收录的无人机在各个参数上的分布比例。下面我们会逐条学习各个术语和对目前的无人机在各个参数上的分布有个认识。
+[drone.specout.com](drone.specout.com) 提供了无人机型库和无人机参数对比的功能，其中包括了很多和无人机相关的术语和术语解释，并且给出了收录的无人机在各个参数上的分布比例。下面我们会逐条学习各个术语和对目前的无人机在各个参数上的分布有个认识。<br />
 
-
-
-* Price, 制造商的建议零售价格(MSRP-Manufacturer's suggested retail price).
+* Price, 制造商的建议零售价格(MSRP-Manufacturer's suggested retail price).<br />
 
 ![价格分布图](http://o90dc46kr.bkt.clouddn.com/%E4%BB%B7%E6%A0%BC.png)
 
-
-
-* Control System－操控系统
+<br /><br /><br />
+* Control System－操控系统<br />
 
 ![操控系统分布](http://o90dc46kr.bkt.clouddn.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.png)
 
-
-
-* Applications － 应用领域
+<br /><br /><br />
+* Applications － 应用领域<br />
 
 ![应用领域分布](http://o90dc46kr.bkt.clouddn.com/%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.png)
 
 决定无人机使用场景的因素主要包括无人机性能，例如最大负载，续航时间等，还有无人机支持的挂件。适合拍摄的无人机会内建摄像机支持拍照和录视频。测绘检测等会挂载倾斜拍摄或者其他感应器的挂件来活动特殊数据。参观了2016年深圳的无人机展，在警用无人机领域这方面会更加明显，无人机厂商开发了数十种挂件，比如扩音器，探照灯，发射器等。
 
-
-
-* Wingspan － 翼幅，指包括旋翼，无人机对角线距离，通常是测量对角旋翼电机轴间距。
+<br /><br /><br />
+* Wingspan － 翼幅，指包括旋翼，无人机对角线距离，通常是测量对角旋翼电机轴间距。<br />
 
 ![翼幅分布](http://o90dc46kr.bkt.clouddn.com/%E7%BF%BC%E5%B9%85.png)
 
 翼幅大小是根据无人机特性在便携性和性能之间取平衡，翼幅小便于携带运输，翼幅大将能支持更多特性。
 
-
-
-* Weight －重量，包括所有内建组件，例如内建摄像机。
+<br /><br /><br />
+* Weight －重量，包括所有内建组件，例如内建摄像机。<br />
 
 ![重量分布](http://o90dc46kr.bkt.clouddn.com/%E9%87%8D%E9%87%8F.png)
 
-
-
-* Body Material － 机身材质
+<br /><br /><br />
+* Body Material － 机身材质<br />
 
 ![机身材质分布](http://o90dc46kr.bkt.clouddn.com/%E6%9C%BA%E8%BA%AB%E6%9D%90%E8%B4%A8.png)
 
@@ -57,6 +50,7 @@ category: drone
 1. 铝比镁重，更具抗腐蚀性，更柔韧
 2. 镁需要保护浇铸来提高抗腐蚀性， 镁铸造成本更高
 
+<br /><br /><br />
 * Rotor Mater － 旋翼材料
 
 ![旋翼材料](http://o90dc46kr.bkt.clouddn.com/%E6%97%8B%E7%BF%BC%E6%9D%90%E6%96%99.png)
@@ -123,7 +117,7 @@ category: drone
 
 * Vision Positioning System － 视觉定位系统。指在无GPS信号的情况下，帮助无人机定位的技术。通过使用一个摄像头和两个距离感应器，系统可以通过扫描地面获得数据。这样可以做到室内的飞行。
 
-​	Maximum Altitude － 垂直定位高度
+  ​Maximum Altitude － 垂直定位高度
 
 ![视觉定位高度](http://o90dc46kr.bkt.clouddn.com/%E8%A7%86%E8%A7%89%E5%AE%9A%E4%BD%8D%E9%AB%98%E5%BA%A6.png)
 
