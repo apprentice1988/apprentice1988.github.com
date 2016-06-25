@@ -20,6 +20,7 @@
 	<body id="top" style="overflow:hidden;">
 		<div class="scrollable">
 			<div class="row">
+                <!--
 				<aside class="span3" style="margin-top:150px;">
 					{%for cg in page.categories%}
 					  <div id="post-category"><a href="/category.html#{{cg}}">{{cg}}</a></div>
@@ -32,6 +33,7 @@
 					  {% endfor %}
 					{%endfor%}
 				</aside>
+                -->
 				<article id="post" class="span9" style="margin-top:60px;width:50%;margin-left:5%;">
 				  <h2>{{ page.title }}&nbsp&nbsp<time date="{{ page.date }}">{{ page.date|date: "%Y-%m-%d"}}</time></h2>
 					{{ content }}
