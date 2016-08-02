@@ -15,8 +15,4 @@ links:
     url:          /about
 highlighter:      pygments
 permalink:        pretty
-redcarpet:
-  extensions:
-    - smart
-  input:          GFM
 encoding:         "utf-8"
