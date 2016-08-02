@@ -13,6 +13,5 @@ links:
     url:          /timeline
   - name:         About
     url:          /about
-highlighter:      rouge
 permalink:        pretty
 encoding:         "utf-8"
